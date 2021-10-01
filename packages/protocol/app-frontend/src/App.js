@@ -70,7 +70,7 @@ function startApp(provider) {
 const web3 = new Web3(window.ethereum);
 
 console.log(web3.eth.currentProvider)
-//const account = web3.eth.accounts.privateKeyToAccount("0x7385316af1c755fe53dd49681f68d4f341bf069eb03636215482a9dc94538591");
+
   
 const AccountsArray = await web3.eth.getAccounts();
 const account = AccountsArray[0];
@@ -87,19 +87,7 @@ setnextStreamId( nextStreamId = NextId);
 
 
 
-//const _createStream = await  contract.methods.createStream("0x260fa1B7689F0905982C247AC61da04B5B675bde",15000000,"0xf5dc6821eEFD8638250820d344924B494F1749Db","1632996944","1632997044").send({from: account })  ;
-// console.log( _createStream );
 
-//const _createStream = await  account.sign(contract.methods.createStream("0x260fa1B7689F0905982C247AC61da04B5B675bde",15000,"0xf5dc6821eEFD8638250820d344924B494F1749Db","1632809984","1632810984").send({from: "0xfcae752b10e1952ca2acdb8aacafbfa4188b85ec"}) ) ;
-//console.log({_createStream});
-//const _getStream = await  account.sign(contract.methods.getStream(100002).call() )
-//console.log(_getStream);
-// const onSubmitGetStreamInfo = async (event) => {
-//   event.preventDefault();
-//   const _getStream = await contract.methods.getStream(getStreamId).call() 
-//   console.log(_getStream);
-   
-// } 
 
  }
 
