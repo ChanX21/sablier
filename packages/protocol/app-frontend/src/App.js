@@ -30,6 +30,10 @@ const [DataID, setDataID] = useState("");
 const [cancelStreamId, setCancelStreamId] = useState("");
 
 
+const [withdrawStreamId, setWithdrawStreamId] = useState("");
+const [withdrawAmount, setWithdrawAmount] = useState("");
+
+
 
 
 // Code below is to initialize and implement web3
@@ -121,6 +125,19 @@ const onSubmit_CreateStream = async (event) => {
    
 } 
 
+
+const onSubmitWithdrawAmount = async (event) => {
+  event.preventDefault();
+  const web3 = new Web3(window.ethereum);
+  const AccountsArray = await web3.eth.getAccounts();
+  const account = AccountsArray[0];
+  var contract = new web3.eth.Contract(SabilierContractIntstance.abi, "0x8582f3B4CFd18b8FA66A352AE25F6D2DC2A359e3");
+  var _withdrawFromStream = await contract.methods.withdrawFromStream( withdrawStreamId, withdrawAmount).send({from: account})  ;
+  console.log(_withdrawFromStream);
+
+}
+   
+
 const onSubmitBalanceOf = async (event) => {
   event.preventDefault();
   const web3 = new Web3(window.ethereum);
@@ -202,7 +219,35 @@ console.log(streamId);
      
       <button type="submit">Submit</button>
   </form> <br/>    
-    
+
+
+  
+
+     
+  <label >Withdraw From Stream </label>     
+    <form onSubmit={onSubmitWithdrawAmount}>
+      <input
+        value={withdrawStreamId}
+        onChange={e => setWithdrawStreamId(e.target.value)  }
+        placeholder="Stream ID"
+        type="number"
+        name="withdraw_streamId"
+        required
+      />
+     
+      <input
+        value={withdrawAmount}
+        onChange={e => setWithdrawAmount(e.target.value)}
+        placeholder="Amount To Withdraw"
+        type="number"
+        name="withdrawAmount"
+        required
+      />     
+      <button type="submit">Submit</button>
+    </form ><br/>
+  
+
+  
 
 
      
